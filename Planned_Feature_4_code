@@ -1,0 +1,29 @@
+# This is our skeleton. It's really overly simple because it's just meant to searve as a placeholder for now
+
+    <ul class="nav nav-tabs">
+	      <li class="active"><a href="#editor" data-toggle="tab">Editor</a></li>
+	      <li><a href="#preview" data-toggle="tab" id="previewlink">Preview</a></li>
+        <button onclick="toggleAccessibilityOptions()">Accessibility Options</button>
+    </ul>
+
+    <!-- Accessibility Options Panel -->
+    <div id="accessibility-options" style="display:none;">
+        <button onclick="toggleHighContrast()">High Contrast Mode</button>
+        <button onclick="changeFontSize(true)">Increase Font Size</button>
+        <button onclick="changeFontSize(false)">Decrease Font Size</button>
+    </div>
+
+    <script>
+        function toggleAccessibilityOptions() {
+            var optionsPanel = document.getElementById('accessibility-options');
+            optionsPanel.style.display = optionsPanel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function toggleHighContrast() {
+            // Logic to toggle high-contrast mode
+        }
+
+        function changeFontSize(increase) {
+            // Logic to increase or decrease font size
+        }
+    </script>
