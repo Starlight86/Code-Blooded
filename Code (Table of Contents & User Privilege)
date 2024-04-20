@@ -1,1 +1,200 @@
-Code skeleton and plans here
+roles.html
+{% extends 'base.html' %}
+
+{% block title %}Assign Role{% endblock %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pygments.css') }}">
+</head>
+
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <a href="#" class="brand">{{ config.TITLE }}</a>
+                        <ul class="nav">
+                            <li><a href="{{ url_for('wiki.home') }}">Home</a></li>
+                            <li><a href="{{ url_for('wiki.index') }}">Index</a></li>
+                            <li><a href="{{ url_for('wiki.tags') }}">Tags</a></li>
+                            <li><a href="{{ url_for('wiki.search') }}">Search</a></li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="{{ url_for('wiki.create') }}">New Page</a></li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="{{ url_for('wiki.instructions') }}">Instructions</a></li>
+                            <li><a href="{{ url_for('wiki.roles') }}">Roles</a></li>
+                            <li></li>
+                        </ul>
+
+                        <ul class="nav pull-right">
+                            {% if current_user.is_anonymous %}
+                                <li><a href="{{ url_for('wiki.user_login') }}">Login</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('wiki.user_logout') }}">Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Assign Role</h2>
+    {% if current_user.is_authenticated %}
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.username.label }}<br>
+                {{ form.username(class="form-control") }}<br>
+                {% for error in form.username.errors %}
+                    <span style="color: red;">{{ error }}</span><br>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.role.label }}<br>
+                {{ form.role(class="form-control") }}<br>
+                {% for error in form.role.errors %}
+                    <span style="color: red;">{{ error }}</span><br>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">Assign Role</button>
+        </form>
+        {% if assigned_role %}
+        <div class="assigned-role">
+            <p>Assigned Role: {{ assigned_role }}</p>
+        </div>
+        {% endif %}
+    {% else %}
+        <p>Please <a href="{{ url_for('wiki.user_login') }}">log in</a> to assign roles.</p>
+    {% endif %}
+</body>
+{% endblock %}
+
+admin.html
+{% from "helpers.html" import input %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pygments.css') }}">
+	</head>
+
+	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<div class="row">
+						<div class="span12">
+							<a href="#" class="brand">{{ config.TITLE }}</a>
+							<ul class="nav">
+								<li><a href="{{ url_for('wiki.home') }}">Home</a></li>
+								<li><a href="{{ url_for('wiki.index') }}">Index</a></li>
+								<li><a href="{{ url_for('wiki.tags') }}">Tags</a></li>
+								<li><a href="{{ url_for('wiki.search') }}">Search</a></li>
+								<li class="divider-vertical"></li>
+								<li><a href="{{ url_for('wiki.create') }}">New Page</a></li>
+								<li class="divider-vertical"></li>
+                                <li><a href="{{ url_for('wiki.instructions') }}">Instructions</a></li>
+                                <li><a href="{{ url_for('wiki.roles') }}">Roles</a></li>
+								<li></li>
+							</ul>
+
+							<ul class="nav pull-right">
+								{% if current_user.is_anonymous %}
+									<li><a href="{{ url_for('wiki.user_login') }}">Login</a></li>
+								{% else %}
+									<li><a href="{{ url_for('wiki.user_logout') }}">Logout</a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Admin Page</h2>
+                <p>Welcome to the Admin page, your roles have been clear and to get fresh access you need to re-enter the admin role.</p>
+                <hr>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
+
+routes.py (add imports)
+from .forms import AssignRoleForm
+from .forms import LoginForm
+from flask import abort
+
+@bp.route('/admin')
+@login_required
+def admin():
+    print(roles)
+    if current_user.has_role('admin'):
+        current_user.clear_all_roles()
+        return render_template('admin.html')
+    else:
+        flash('You do not have access to this page.', 'error')
+        return redirect(url_for('wiki.index'))
+
+
+
+@bp.route('/roles/', methods=['GET', 'POST'])
+@protect
+def roles():
+    form = AssignRoleForm()
+    assigned_role = None
+    if form.validate_on_submit():
+        username = form.username.data
+        role = form.role.data
+        user = current_users.get_user(username)
+        if user:
+            user_roles = user.get('roles', [])
+            user_roles.append(role)
+            user.set('roles', user_roles)
+            flash(f'Role "{role}" assigned to user "{username}".', 'success')
+            assigned_role = role
+            print("Assigned role:", assigned_role)
+            return redirect(url_for('wiki.user_index'))
+        else:
+            flash('User not found.', 'error')
+    print("Assigned role:", assigned_role)
+    return render_template('roles.html', form=form, assigned_role=assigned_role)
+
+# updated the below one
+@bp.route('/user/')
+def user_index():
+    return redirect(url_for('wiki.index'))
+    # pass
+
+
+user.py (updated class user)
+class User(object):
+    def __init__(self, manager, name, data):
+        self.manager = manager
+        self.name = name
+        self.data = data
+        self.roles = data.get('roles', [])
+
+    def get(self, option, default=None):
+        return self.data.get(option, default)
+
+    def has_role(self, role):
+        return role in self.roles
+
+    def clear_all_roles(self):
+        self.roles = []  # Clear all roles
+        self.data['roles'] = self.roles  # Update the roles data in the user object
+        self.save()
+
+base.html (add two to nav bar)
+<li><a href="{{ url_for('wiki.roles') }}">Roles</a></li>
+<li><a href="{{ url_for('wiki.admin') }}">admin</a></li>
+								
