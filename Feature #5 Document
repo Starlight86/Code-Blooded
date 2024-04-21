@@ -1,0 +1,14 @@
+Feature 5 / Citation Generator
+
+Feature 5 is a button at the bottom of pages in the Riki site. Pages (articles) can be created and mimic articles in
+wikipedia in their form and can be indexed by tags. Given this site's similarity to wikipedia, we can infer that users
+may want to cite articles they find on the website for scholarly purposes. To assist them in this, we created a method
+that generates two of the more popular formats of citations using variables already present in the code. 
+
+When the user navigates to a page on the site, they can scroll to the bottom of the page to find a button labeled 
+"View Citations". When they click on it, a pop up window appears with the MLA and APA citation printed out as well as a button
+under each labelled either "Copy MLA" or "Copy APA" that will copy the citation to their clipboard.
+
+The features was added by modifying page.html which is the html used for pages/articles. It contains metadata such as the title
+and URL which are required. Then the publisher, Riki, is added, and we use formatDate() to get the time the article was 
+accessed.
