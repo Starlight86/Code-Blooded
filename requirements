@@ -1,0 +1,15 @@
+Feature 1: Zachary Mcnay / Dark Mode
+
+as a user I want to be able to press a button on the page so that it switches to a dark mode.
+
+as a user I want to be able to press the button again to change the page back to normal.
+
+as a user I want the wiki pages to stay in dark mode until I hit the button again to change it back .
+
+Feature 2: Zachary Mcnay / Custom Templates for Pages
+
+as a user I want to be able to set the default template when i create a page.
+
+as a user I want to be able change the default template used on a page.
+
+as a user i want the page setting to say when i switch pages.
