@@ -38,6 +38,12 @@ class EditorForm(FlaskForm):
     title = StringField('', [InputRequired()])
     body = TextAreaField('', [InputRequired()])
     tags = StringField('')
+    text_color = StringField('Text Color')
+    background_color = StringField('Background Color')
+
+class AssignRoleForm(FlaskForm):
+    role = StringField('Role', [InputRequired()])
+    username = StringField('Username', [InputRequired()])
 
 
 class LoginForm(FlaskForm):

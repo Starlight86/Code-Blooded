@@ -25,6 +25,9 @@ class UserManager(object):
             data = json.loads(f.read())
         return data
 
+    def check_privilege(self, user, privilege):
+        return privilege in user.get('roles', [])
+
     def write(self, data):
         with open(self.file, 'w') as f:
             f.write(json.dumps(data, indent=2))
@@ -81,9 +84,18 @@ class User(object):
         self.manager = manager
         self.name = name
         self.data = data
+        self.roles = data.get('roles', [])
 
-    def get(self, option):
-        return self.data.get(option)
+    def get(self, option, default=None):
+        return self.data.get(option, default)
+
+    def has_role(self, role):
+        return role in self.roles
+
+    def clear_all_roles(self):
+        self.roles = []  # Clear all roles
+        self.data['roles'] = self.roles  # Update the roles data in the user object
+        self.save()
 
     def set(self, option, value):
         self.data[option] = value

@@ -1,11 +1,13 @@
-/* custom.css */
+/* dark.css */
 /*
-zack
-week 1: this was created file was created and 106 lines of code was written
+week 1: 106 lines of code was written and this was created
+
 
 */
 .dark-mode {
+    /* This sets the background color */
     background-color: #333;
+    /* This sets text color */
     color: #fff;
 }
 
@@ -25,7 +27,7 @@ week 1: this was created file was created and 106 lines of code was written
 .dark-mode input[type="tel"],
 .dark-mode input[type="color"],
 .dark-mode .uneditable-input {
-    background-color: #333; /* Change background color in dark mode */
+    background-color: #333; /* text boxes */
     color: #fff; /* Change text color in dark mode */
     border: 1px solid #555; /* Change border color in dark mode */
 }

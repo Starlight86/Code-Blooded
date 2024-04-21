@@ -5,7 +5,24 @@
 {% endblock title %}
 
 {% block content %}
-  <div id="confirmDelete" class="modal hide fade" aria-hidden="true">
+<style>
+    /* Styles specifically for citationPopup */
+    #citationPopup {
+        background-color: #808080; /* Gray background */
+        color: black; /* Black text */
+    }
+    #citationPopup .modal-header,
+    #citationPopup .modal-body,
+    #citationPopup .modal-footer {
+        background-color: inherit; /* Inherits the gray background */
+        color: inherit; /* Inherits the black text color */
+    }
+    #citationPopup .close {
+        color: black; /* Ensures the close button is black */
+    }
+</style>
+
+<div id="confirmDelete" class="modal hide fade" aria-hidden="true">
     <div class="modal-header">
       <h3>Are you sure?</h3>
     </div>
@@ -16,9 +33,9 @@
       <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">No</a>
       <a href="{{ url_for('wiki.delete', url=page.url) }}" class="btn btn-danger">Yes, delete.</a>
     </div>
-  </div>
+</div>
 
-  {{ page }}
+{{ page }}
 
 <div id="citationPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-header">
@@ -52,7 +69,6 @@
     });
 
     function copyToClipboard(elementId) {
-        // Get the text from the citation paragraph
         var text = document.getElementById(elementId).innerText;
         navigator.clipboard.writeText(text).then(function() {
             console.log('Copying to clipboard was successful!');
@@ -62,10 +78,10 @@
     }
 </script>
 
-  <!-- Button to trigger the citation pop-up modal -->
-  <div class="modal-footer">
+<!-- Button to trigger the citation pop-up modal -->
+<div class="modal-footer">
     <a href="#citationPopup" role="button" class="btn" data-toggle="modal">View Citations</a>
-  </div>
+</div>
 {% endblock content %}
 
 {% block sidebar %}

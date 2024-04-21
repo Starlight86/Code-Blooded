@@ -15,6 +15,8 @@ Wiki Editor
 			{{ form.hidden_tag() }}
 			{{ input(form.title, placeholder="Title", class="span7", autocomplete="off") }}
 			{{ input(form.body, placeholder="Markdown", class="span7", rows="20") }}
+            {{ input(form.text_color, placeholder="Text Color (e.g. #A00000)", class="span7") }}
+            {{ input(form.background_color, placeholder="Background Color (e.g. #FFFFFF)", class="span7") }}
 			{{ input(form.tags, placeholder="Tags (comma separated)", class="span7", autocomplete="off") }}
 			<div class="form-actions">
         <div class="pull-left">

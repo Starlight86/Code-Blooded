@@ -2,6 +2,7 @@
     Routes
     ~~~~~~
 """
+import os
 from flask import Blueprint
 from flask import flash
 from flask import redirect
@@ -9,9 +10,13 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from flask_login import current_user
+from flask import current_app
 from flask_login import login_required
 from flask_login import login_user
 from flask_login import logout_user
+
+from .forms import AssignRoleForm
+from .forms import LoginForm
 
 from wiki.core import Processor
 from wiki.web.forms import EditorForm
@@ -33,6 +38,46 @@ def home():
     if page:
         return display('home')
     return render_template('home.html')
+"""add code"""
+@bp.route('/instructions/')
+@protect
+def instructions():
+    return render_template('instructions.html')
+
+@bp.route('/admin')
+@login_required
+def admin():
+    print(roles)
+    if current_user.has_role('admin'):
+        current_user.clear_all_roles()
+        return render_template('admin.html')
+    else:
+        flash('You do not have access to this page.', 'error')
+        return redirect(url_for('wiki.index'))
+
+
+
+@bp.route('/roles/', methods=['GET', 'POST'])
+@protect
+def roles():
+    form = AssignRoleForm()
+    assigned_role = None
+    if form.validate_on_submit():
+        username = form.username.data
+        role = form.role.data
+        user = current_users.get_user(username)
+        if user:
+            user_roles = user.get('roles', [])
+            user_roles.append(role)
+            user.set('roles', user_roles)
+            flash(f'Role "{role}" assigned to user "{username}".', 'success')
+            assigned_role = role
+            print("Assigned role:", assigned_role)
+            return redirect(url_for('wiki.user_index'))
+        else:
+            flash('User not found.', 'error')
+    print("Assigned role:", assigned_role)
+    return render_template('roles.html', form=form, assigned_role=assigned_role)
 
 
 @bp.route('/index/')
@@ -46,7 +91,8 @@ def index():
 @protect
 def display(url):
     page = current_wiki.get_or_404(url)
-    return render_template('page.html', page=page)
+    custom_css_exists = os.path.exists(os.path.join(current_app.static_folder, f"{url}.css"))
+    return render_template('page.html', page=page, custom_css_exists=custom_css_exists)
 
 
 @bp.route('/create/', methods=['GET', 'POST'])
@@ -70,6 +116,17 @@ def edit(url):
         form.populate_obj(page)
         page.save()
         flash('"%s" was saved.' % page.title, 'success')
+        css_filename = f"{url}.css"
+        css_path = os.path.join(current_app.static_folder, css_filename)
+        if form.text_color.data and form.background_color.data:
+            with open(css_path, 'w') as f:
+                f.write(f"""
+                    /* {css_filename} */
+                    body {{
+                        color: {form.text_color.data};
+                        background-color: {form.background_color.data};
+                    }}
+                """)
         return redirect(url_for('wiki.display', url=url))
     return render_template('editor.html', form=form, page=page)
 
@@ -152,7 +209,8 @@ def user_logout():
 
 @bp.route('/user/')
 def user_index():
-    pass
+    return redirect(url_for('wiki.index'))
+    # pass
 
 
 @bp.route('/user/create/')
