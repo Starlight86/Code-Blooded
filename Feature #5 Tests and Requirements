@@ -1,0 +1,19 @@
+User Stories
+- Epic: As a user looking for credible articles, I want to easily cite articles I find relevant and interesting so that I can efficiently and easily cite sources and continue my research.
+- As a student, I want to be able to cite articles quickly without the use of external tools so that I can cite articles faster.
+- As a scholar, I want to be able to cite articles in the most popular formats so that I can conform to my own requirements.
+Requirements 6
+- There should be a "Generate Citations" button on each article page.
+- Clicking the button should open a pop-up window.
+- The pop-up window should display MLA and APA citations for the article.
+- The citations must include the article title and date accessed.
+- The citations should be formatted as closely as possible to the latest MLA and APA guidelines with the available metadata.
+- Users should be able to copy the citations to the clipboard.
+Unit Tests 7
+- Button Visibility Test: Test if the "Generate Citations" button is present on article pages.
+- Button Absence Test: Test that the button is not present on non-article pages.
+- Pop-up Window Test: Test if the pop-up window opens upon clicking the button.
+- Citation Content Test: Test if the pop-up window contains both MLA and APA citations.
+- Citation Format Test: Test if the citations are correctly formatted for both styles.
+- Data Insertion Test: Test if the article title and date are correctly inserted into the citations.
+- Copy Functionality Test: Test if the citations can be copied to the clipboard.
