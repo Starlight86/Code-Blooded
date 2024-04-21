@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instructions</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pygments.css') }}">
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <a href="#" class="brand">{{ config.TITLE }}</a>
+                        <ul class="nav">
+                            <li><a href="{{ url_for('wiki.home') }}">Home</a></li>
+                            <li><a href="{{ url_for('wiki.index') }}">Index</a></li>
+                            <li><a href="{{ url_for('wiki.tags') }}">Tags</a></li>
+                            <li><a href="{{ url_for('wiki.search') }}">Search</a></li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="{{ url_for('wiki.create') }}">New Page</a></li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="{{ url_for('wiki.instructions') }}">Instructions</a></li>
+                            <li><a href="{{ url_for('wiki.roles') }}">Roles</a></li>
+                            <li></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            {% if current_user.is_anonymous %}
+                                <li><a href="{{ url_for('wiki.user_login') }}">Login</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('wiki.user_logout') }}">Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Instructions / Tutorial Page</h2>
+                <p>Welcome to the Instructions page for the Riki website. Here, you'll find detailed explanations on how to utilize various features of our platform.</p>
+                <hr>
+                <h3>Feature 1: Switch the page to a dark mode template</h3>
+                <p>Description: Dark mode is a button in the navbar that when hit will cycle the page to a
+                    dark theme and when hit again cycle the page back to the light theme.</p>
+                <hr>
+                <h3>Feature 2: Allow users to set a custom template for a page</h3>
+                <p>Description: Custom template will let users set the background color and
+                    text color for pages.
+                    Will likely use the button from feature 1 and cycle though light, mode
+                    dark mode and custom page theme</p>
+                <hr>
+                <h3>Feature 3: Text visibility modifier for visually impaired (High Contrast / Text Size)</h3>
+                <p>Description: Accessibility Mode has a button on the Navbar of every page that when pressed
+                    opens a pop-up window. In this pop-op window are two checkboxes labeled high-contrast mode
+                    and larger text. the high contrast checkbox, when selected, changes the background to black
+                    and the text color to white where possible. this is for users that have visual impairments that
+                    reduce the ability to distinguish similar colors. larger text, when selected, increases all
+                    text size, where possible, by 50% for users that struggle to see small print.</p>
+                <hr>
+                <h3>Feature 4: Citation Generator</h3>
+                <p>Description: Citation Generator is a button that will be at the bottom of each article/page
+                    and when pressed creates a pop-up window containing pre-made citations in MLA and APA
+                    format for that article. </p>
+                <hr>
+                <h3>Feature 5: Instructions page and Tutorial.</h3>
+                <p>Description: To access the features of our website, navigate through the following options:</p>
+                <ul>
+                    <li><strong>Home:</strong> Click on the "Home" link to go to the homepage of our website.</li>
+                    <li><strong>Index:</strong> Access the index of pages by clicking on the "Index" link.</li>
+                    <li><strong>Tags:</strong> Explore pages based on tags by clicking on the "Tags" link.</li>
+                    <li><strong>Search:</strong> Use the search functionality by clicking on the "Search" link.</li>
+                </ul>
+                <p>Additionally, you can create a new page by clicking on the "New Page" link.</p>
+                <hr>
+                <h3>Feature 6: Role-based Access to Admin Page</h3>
+                <p>Description: This feature implements role-based access control to the admin page of our website.
+                    Users with specific roles, such as "admin," are granted access to the admin page, where they
+                    can perform administrative tasks. By applying roles, we ensure that only authorized users can
+                    access sensitive functionalities, maintaining the security and integrity of our website. This
+                    feature enhances user management and security by restricting access to privileged areas based
+                    on predefined roles.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
