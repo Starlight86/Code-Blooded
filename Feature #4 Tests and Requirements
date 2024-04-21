@@ -1,0 +1,18 @@
+User Stories:
+- Epic: As a user with accessibility needs, I want to easily adjust the website's appearance so that I can comfortably read and navigate the content.
+- As a visually impaired user, I want to be able to enable a high contrast mode on the website so that I can read the text more easily.
+- As a user of older age, I want to be able to change the font size of the text on the website so that I can read the text.
+
+Requirements 5
+- There should be a button on the navbar that, when clicked, opens a pop-up window.
+- The accessibility button should appear on all pages.
+- The pop-up window must contain two checkboxes: one for high contrast mode and one for larger text.
+- When the high contrast mode checkbox is checked, the background color of the site should change to black and the text color should change to yellow.
+- When the larger text checkbox is checked, the text size on the site should increase by 50%.
+
+Unit Tests 5
+- Button Display Test: Test if the button is correctly rendered on the navbar.
+- Pop-up Window Render Test: Test if the pop-up window is displayed when the button is clicked.
+- Checkbox Render Test: Test if both checkboxes are present in the pop-up window.
+- High Contrast Mode Toggle Test: Test if the background and text color change when the high contrast checkbox is toggled.
+- Larger Text Mode Toggle Test: Test if the text size increases by 50% when the larger text checkbox is toggled.
