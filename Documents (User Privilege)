@@ -1,1 +1,13 @@
-view powerpoints for updated information/status report
+To access and use both the roles page and the admin page you will first need to login in with 
+your user account. Then click the roles and fill in your user name with the title of the role you
+want assigned. To access the admin page you will need to assign the role "admin". Once you access 
+the admin page all your roles will be cleared and you will have to re-add the roles in the role
+page.
+
+In the code form, you can go to the roles.html under templates and adjust anything needed in the 
+roles.html page. The methods below Assign Role is used to assign the user the roles inserted and 
+is needed to allow the other code to function. The page access and role assignment are done within 
+routes.py and the user.py page where routes.py has a creation and assignment for the role
+while the user.py allows the role to be passed into the list and saved. When using the admin.html
+page you have an if statement to check for the correct role to access the page and once it is 
+correct it will clear the roles and let the user view the page.
