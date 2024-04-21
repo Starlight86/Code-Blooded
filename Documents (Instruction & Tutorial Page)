@@ -1,1 +1,5 @@
-view powerpoints for updated information/status report
+To use and understand the instructions page on the website you simply need to be on the home page and select the instruction tab to view the HTML 
+page with the information on it.
+
+The code view is used to go to the templates folder and locate the instruction.html to view the info. To adjust either the page linking or the address 
+go to the routes folder to adjust the /instruction/ section to the adjusted address and go to the base.html to adjust the page link.
