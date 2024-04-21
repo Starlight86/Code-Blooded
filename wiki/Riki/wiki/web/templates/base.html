@@ -5,8 +5,13 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pygments.css') }}">
+		
+		<!-- dark mode change here-->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dark.css') }}">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<!-- end of dark mode change here-->
 	</head>
-
+	
 	<body>
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -24,9 +29,10 @@
 								<li class="divider-vertical"></li>
 								<li></li>
 							</ul>
-
+							
 							<ul class="nav pull-right">
-                                <li><a href="#" id="accessibilityBtn">Accessibility</a></li>
+								<li><button id="dark-mode-toggle" class="btn">Dark Mode</button></li> <!-- Dark Mode Button in Navbar -->
+								<li><a href="#" id="accessibilityBtn">Accessibility</a></li>
 								{% if current_user.is_anonymous %}
 									<li><a href="{{ url_for('wiki.user_login') }}">Login</a></li>
 								{% else %}
@@ -38,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="container">
 			<div class="row">
 				<div class="span10 offset1">
@@ -49,6 +55,7 @@
 					{% endblock header %}
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="span7 offset1">
 					{% with messages = get_flashed_messages(with_categories=True) %}
@@ -61,28 +68,34 @@
 							{% endfor %}
 						{% endif %}
 					{% endwith %}
+					
 					{% if form and form.errors %}
 						<div class="alert alert-error">Errors occured verifying your input. Please check the marked fields below.</div>
 					{% endif %}
+					
 					{% block content %}
 					{% endblock content %}
 				</div>
+				
 				<div class="span3">
 					{% block sidebar %}
 					{% endblock sidebar %}
 				</div>
 			</div>
 		</div>
+		
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js "></script>
 		<script type="text/javascript">
 			if (typeof jQuery == 'undefined') {
 				document.write(unescape("%3Cscript src='{{ url_for('static', filename='jquery.min.js') }}' type='text/javascript'%3E%3C/script%3E"));
 			}
-            $(document).ready(function(){
+			
+			$(document).ready(function(){
 				$("#accessibilityBtn").click(function(){
 					$('#accessibilityModal').modal('show');
 				});
-            // Function to handle "Larger Text" checkbox
+				
+				// Function to handle "Larger Text" checkbox
 				$('#largeTextCheckbox').change(function(){
 					if($(this).is(':checked')) {
 						$('body').css('font-size', '1.5em'); // Increase font size
@@ -90,46 +103,50 @@
 						$('body').css('font-size', ''); // Reset font size
 					}
 				});
-                // Function to handle high contrast option
-                $('#highContrastCheckbox').change(function(){
-                    if($(this).is(':checked')) {
-                        $('body, .navbar, .navbar-inner, .navbar-fixed-top .brand, .nav > li > a').css({
-                            'background-color': 'black', // Set navbar background color to black
-                            'color': 'yellow' // Set navbar text color to white
-                        });
-                        $('.navbar').css({
-                          'background-color': 'black !important',
-                          'color': 'yellow !important'
-                        });
-                        $('body').css('background-color', 'black'); // Set body background color to black
+                
+				// Function to handle high contrast option
+				$('#highContrastCheckbox').change(function(){
+					if($(this).is(':checked')) {
+						$('body, .navbar, .navbar-inner, .navbar-fixed-top .brand, .nav > li > a').css({
+							'background-color': 'black', // Set navbar background color to black
+							'color': 'yellow' // Set navbar text color to white
+						});
+                        
+						$('.navbar').css({
+							'background-color': 'black !important',
+							'color': 'yellow !important'
+						});
+                        
+						$('body').css('background-color', 'black'); // Set body background color to black
                         $('body').css('color', 'yellow'); // Set body text color to yellow
                         $('#accessibilityModal .modal-content').css('background-color', 'black'); // Set modal background color to black
                         $('#accessibilityModal .modal-content').css('color', 'yellow'); // Set modal text color to yellow
-                    } else {
+					} else {
                         $('body, .navbar, .navbar-inner, .brand, .nav > li > a').css({
-                            'background-color': '', // Reset navbar background color
-                            'color': '' // Reset navbar text color
+							'background-color': '', // Reset navbar background color
+							'color': '' // Reset navbar text color
                         });
-                        $('.nav > li > a').css({
-                            'border-color': '' // Reset navbar item border color
-                        });
-                        $('body').css('background-color', ''); // Reset body background color
-                        $('body').css('color', ''); // Reset body text color
-                        $('#accessibilityModal .modal-content').css('background-color', ''); // Reset modal background color
-                        $('#accessibilityModal .modal-content').css('color', ''); // Reset modal text color
-                    }
-                });te
-
+						
+						$('.nav > li > a').css({
+							'border-color': '' // Reset navbar item border color
+						});
+						
+						$('body').css('background-color', ''); // Reset body background color
+						$('body').css('color', ''); // Reset body text color
+						$('#accessibilityModal .modal-content').css('background-color', ''); // Reset modal background color
+						$('#accessibilityModal .modal-content').css('color', ''); // Reset modal text color
+					}
+				});
 			});
-        		</script>
+		</script>
+		
 		<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
 		<script type="text/javascript">
 			{% block postscripts %}
 			{% endblock postscripts %}
 		</script>
-
-
-        <!-- Accessibility Modal -->
+		
+		<!-- Accessibility Modal -->
 		<div id="accessibilityModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="accessibilityModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -137,15 +154,18 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h3 id="accessibilityModalLabel">Accessibility Options</h3>
 					</div>
+					
 					<div class="modal-body">
 						<p>Select high visibility options:</p>
 						<label class="checkbox">
 							<input type="checkbox" id="highContrastCheckbox"> High Contrast
 						</label>
+						
 						<label class="checkbox">
 							<input type="checkbox" id="largeTextCheckbox"> Large Text
 						</label>
 					</div>
+					
 					<div class="modal-footer">
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 					</div>
@@ -153,6 +173,25 @@
 			</div>
 		</div>
 		<!-- End Accessibility Modal -->
+		
+		<!-- Dark Mode Button Script -->
+		<script>
+			$(document).ready(function() {
+				$("#dark-mode-toggle").click(function() {
+					$("body").toggleClass("dark-mode");
+					var darkModeEnabled = $("body").hasClass("dark-mode");
+					localStorage.setItem("darkMode", darkModeEnabled);
+					$(this).text(darkModeEnabled ? "Light Mode" : "Dark Mode");// Toggle button text
+				});
+				
+				var darkMode = localStorage.getItem("darkMode");
+				if (darkMode && darkMode === "true") {
+					$("body").addClass("dark-mode");
+					$("#dark-mode-toggle").text("Light Mode"); // Change button text to "Light Mode"
+				}
+			});
+		</script>
+		<!-- end of Dark Mode Button Script -->
+		
 	</body>
 </html>
-	

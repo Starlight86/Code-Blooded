@@ -1,0 +1,110 @@
+/* custom.css */
+/*
+zack
+week 1: this was created file was created and 106 lines of code was written
+
+*/
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode textarea,
+.dark-mode input[type="text"],
+.dark-mode input[type="password"],
+.dark-mode input[type="datetime"],
+.dark-mode input[type="datetime-local"],
+.dark-mode input[type="date"],
+.dark-mode input[type="month"],
+.dark-mode input[type="time"],
+.dark-mode input[type="week"],
+.dark-mode input[type="number"],
+.dark-mode input[type="email"],
+.dark-mode input[type="url"],
+.dark-mode input[type="search"],
+.dark-mode input[type="tel"],
+.dark-mode input[type="color"],
+.dark-mode .uneditable-input {
+    background-color: #333; /* Change background color in dark mode */
+    color: #fff; /* Change text color in dark mode */
+    border: 1px solid #555; /* Change border color in dark mode */
+}
+
+/* Dark mode styles for input fields when focused */
+.dark-mode textarea:focus,
+.dark-mode input[type="text"]:focus,
+.dark-mode input[type="password"]:focus,
+.dark-mode input[type="datetime"]:focus,
+.dark-mode input[type="datetime-local"]:focus,
+.dark-mode input[type="date"]:focus,
+.dark-mode input[type="month"]:focus,
+.dark-mode input[type="time"]:focus,
+.dark-mode input[type="week"]:focus,
+.dark-mode input[type="number"]:focus,
+.dark-mode input[type="email"]:focus,
+.dark-mode input[type="url"]:focus,
+.dark-mode input[type="search"]:focus,
+.dark-mode input[type="tel"]:focus,
+.dark-mode input[type="color"]:focus,
+.dark-mode .uneditable-input:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted \9; /* IE6-9 */
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+.dark-mode .navbar-inner {
+  min-height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #333333;
+  background-image: none;
+  border: 1px solid #555555;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  *zoom: 1;
+}
+
+.dark-mode .navbar .brand {
+  color: #CCCCCC; /* Light text color */
+  text-shadow: 0 1px 0 #000000;
+}
+
+.dark-mode .navbar .brand:hover {
+  color: #FFFFFF; /* Light text color on hover */
+}
+
+.dark-mode .navbar .nav > li > a {
+  color: #CCCCCC; /* Light text color */
+  text-shadow: 0 1px 0 #000000;
+}
+
+.dark-mode .navbar .nav > li > a:hover {
+  color: #FFFFFF; /* Light text color on hover */
+}
+
+.dark-mode .navbar .divider-vertical {
+  height: 40px;
+  margin: 0 9px;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+}
+/* dark.css */
+.dark-mode .well {
+    background-color: #222; /* Adjust the background color for dark mode */
+    border: 1px solid #555; /* Adjust the border color for dark mode */
+}
+
+.dark-mode .well input[type="text"] {
+    background-color: #333; /* Adjust the background color for the text box */
+    color: #fff; /* Adjust text color for better visibility */
+    border-color: #555; /* Adjust border color */
+}
+
+.dark-mode .btn.btn-success {
+    background-color: #4CAF50; /* Adjust the color to a suitable shade of green for dark mode */
+    color: #fff; /* Adjust text color for better visibility */
+}
