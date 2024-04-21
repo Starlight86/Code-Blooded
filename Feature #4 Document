@@ -1,0 +1,10 @@
+Feature 4 / Accessibility Feature
+
+This feature adds a new button labelled "Accessibility" to the navbar of all of the pages. When clicked, this button 
+creates a pop up window with two checkboxes: High Contrast and Large Text. When checked, the High Contrast mode turns
+backgrounds to black and text yellow. This is a common type of accessibility feature designed for users that may struggle
+to differentiate similar hues. The Large Text checkbox, when checked, increases text size by 50%, which is more drastic
+than it may sound. This is intended for users that may not be able to see small text as well as others.
+
+Feature 4 modifies base.html to add the button to the Navbar which is present on all pages. The logic for the high contrast
+mode and large text is also embedded into this html for simplicity since they're rather small functions. 
