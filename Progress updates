@@ -1,0 +1,47 @@
+Week 1
+nothing started
+Feature 6
+0 Lines of code written
+2 Requirements
+8 Tests including Unit, Integration, Acceptance, and Regression Testing
+0% Burndown
+Feature 7
+0 Lines of code written
+2 Requirements
+10 Tests including Unit, Integration, Acceptance, and Regression Testing
+0% Burndown
+
+Week 2 
+Started feature 6 and got it working correctly
+Feature 6
+107 Lines of code written
+2 Requirements
+4 Tests including Integration, Acceptance, and Regression Testing
+75% Burndown
+Feature 7
+0 Lines of code written
+2 Requirements
+10 Tests including Unit, Integration, Acceptance, and Regression Testing
+0% Burndown
+
+Week 3
+Started feature 7 and almost completed feature 6
+Feature 6
+0 Lines of Code this week - 107 Lines total
+0 Requirements fulfilled this week - 2/3 Requirements Fulfilled
+2 Tests Completed this week - 6/6 Tests Completed total
+89% Burndown
+Feature 7
+160 Lines of Code this week - 160 Lines total
+2 Requirements fulfilled this week - 2/4 Requirements Fulfilled
+3 Tests Completed this week - 3/10 Tests Completed
+36% Burndown
+
+Week 4
+We remove feature 3 and shift feature down one. Also completed and confirmed to be work feature 
+5 (was 6) and feature 6 (was 7)
+Feature 5 and 6
+262 Line of code
+7 Requirments fulfilled
+16 test compeleted (some test got dropped as they ended up not being needed)
+
